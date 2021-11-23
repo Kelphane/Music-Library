@@ -5,7 +5,7 @@ class SearchBar extends Component{
     constructor(props){
         super(props);
         this.state = {
-            filter: " ",
+            filter: "all",
             searchFor: " "
         };
     }
@@ -18,8 +18,7 @@ class SearchBar extends Component{
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.searchMusic(this.state);
-        
+        this.props.searchCriteria(this.state);
     }
     
     render(){
@@ -27,7 +26,7 @@ class SearchBar extends Component{
             <form onSubmit={this.handleSubmit}>
                 <label htmlFor="filter">Filter: </label>
                 <select name="filter" id="filter" onChange={this.handleChange}>
-                    <option value="">All</option>
+                    <option value="all">All</option>
                     <option value="title">Title</option>
                     <option value="album">Album</option>
                     <option value="artist">Artist</option>

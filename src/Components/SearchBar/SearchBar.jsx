@@ -13,12 +13,12 @@ class SearchBar extends Component{
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
-        })
-        console.log(this.state);
+        });
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
+        this.props.searchMusic(this.state);
         
     }
     

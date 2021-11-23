@@ -14,7 +14,6 @@ class App extends Component{
         };
     }
 
-    //TO-DO
     componentDidMount(){
         this.fetchMusic();
     }
@@ -27,7 +26,7 @@ class App extends Component{
             this.setState({
                 searchSaved: dataList
             });
-            
+            console.log(dataList);
         }catch(error){
             console.log(error);
         }
@@ -49,7 +48,7 @@ class App extends Component{
     //Creates a New Array that has been Filtered by User Criteria.
     filterSearch = () => {
         let modifiedSearch = this.state.searchSaved.filter(results => {
-            if(this.state.filter === "all"){
+            if(this.state.filter === "all" && this.state.searchFor === " "){
                 return true;
             }else if(results[this.state.filter] === this.state.searchFor){
                 return true;

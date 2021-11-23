@@ -22,7 +22,7 @@ const MusicTable = (props) => {
                             <td>{results.album}</td>
                             <td>{results.artist}</td>
                             <td>{results.genre}</td>
-                            <td>{results.releasedDate}</td>
+                            <td>{results.releaseDate}</td>
                         </tr>
                     );
                 })}

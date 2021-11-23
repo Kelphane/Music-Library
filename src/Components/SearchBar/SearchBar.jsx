@@ -31,7 +31,7 @@ class SearchBar extends Component{
                     <option value="album">Album</option>
                     <option value="artist">Artist</option>
                     <option value="genre">Genre</option>
-                    <option value="releasedDate">Released Date</option>
+                    <option value="releaseDate">Released Date</option>
                 </select>
 
                 <input type="search" name="searchFor" onChange={this.handleChange}></input>

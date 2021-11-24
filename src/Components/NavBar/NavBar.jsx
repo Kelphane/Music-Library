@@ -5,7 +5,10 @@ import SearchBar from "../SearchBar/SearchBar";
 const NavBar = (props) => {
     return(
         <nav className="nav-bar">
-            <SearchBar searchCriteria={props.searchCriteria}/>
+            <SearchBar 
+                handleChange={props.handleChange}
+                handleSubmit={props.handleSubmit}
+            />
         </nav>
     );
 }

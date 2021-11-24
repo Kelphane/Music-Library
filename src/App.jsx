@@ -5,7 +5,7 @@ import Axios from "axios";
 
 class App extends Component{
     constructor(props){
-        super();
+        super(props);
         this.state = {
             filter: "all",
             searchFor: "",
@@ -35,18 +35,36 @@ class App extends Component{
         this.setState({[event.target.name]: event.target.value});
     }
 
+    //Filters the Saved Search by User's Criteria:
     handleSubmit = (event) => {
         event.preventDefault();
+        let modifiedSearch = [];
         
-        let modifiedSearch = this.state.searchSaved.filter(results => {
-            if(this.state.filter === "all" && this.state.searchFor === ""){
-                return true;
-            }else if(results[this.state.filter] === this.state.searchFor){
-                return true;
-            }else{
-                return false;
-            }
-        });
+        if(this.state.filter === "all" && this.state.searchFor === ""){
+            modifiedSearch = this.state.searchSaved;
+        }else if(this.state.filter === "all" && this.state.searchFor !== ""){
+            modifiedSearch = this.state.searchSaved.filter(results => {
+                if(results.title === this.state.searchFor){
+                    return true;
+                }else if(results.album === this.state.searchFor){
+                    return true;
+                }else if(results.artist === this.state.searchFor){
+                    return true;
+                }else if(results.genre === this.state.searchFor){
+                    return true;
+                }else if(results.reaseDate === this.state.searchFor){
+                    return true;
+                }
+            });
+        }else{
+            modifiedSearch = this.state.searchSaved.filter(results => {
+                if(results[this.state.filter] === this.state.searchFor){
+                    return true;
+                }else{
+                    return false;
+                }
+            });
+        }
 
         this.setState({searchResults: modifiedSearch});
     }

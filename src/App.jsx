@@ -7,8 +7,8 @@ class App extends Component{
     constructor(props){
         super();
         this.state = {
-            filter: "",
-            searchFor: "",
+            filter: " ",
+            searchFor: " ",
             searchResults: [],
             searchSaved: []
         };
@@ -26,7 +26,8 @@ class App extends Component{
             this.setState({
                 searchSaved: dataList
             });
-            console.log(dataList);
+            console.log("Successfully Received Music List!");
+            console.log("Saved Locally!");
         }catch(error){
             console.log(error);
         }
@@ -35,18 +36,27 @@ class App extends Component{
     //Update App's State with Search Criteria Pushed from SearchBar Component.
     searchCriteria = (criteria) => {
         let selectedFilter = criteria.filter;
+        console.log("Selected Filter: " + selectedFilter);
+        console.log(typeof(selectedFilter));
+
         let selectedSearchFor = criteria.searchFor;
+        console.log("Selected Search Criteria: " + selectedSearchFor);
+        console.log(typeof(selectedSearchFor));
 
         this.setState({
             filter: selectedFilter,
             searchFor: selectedSearchFor
         });
 
+        console.log("Criteria Sumbmitted!");
+        console.log(this.state);
+
         this.filterSearch();
     }
 
     //Creates a New Array that has been Filtered by User Criteria.
     filterSearch = () => {
+        console.log("Begining Filter!");
         let modifiedSearch = this.state.searchSaved.filter(results => {
             if(this.state.filter === "all" && this.state.searchFor === " "){
                 return true;
@@ -60,6 +70,8 @@ class App extends Component{
         this.setState({
             searchResults: modifiedSearch
         });
+        console.log("Search Filtered!");
+        console.log(this.state);
     }
 
     render(){

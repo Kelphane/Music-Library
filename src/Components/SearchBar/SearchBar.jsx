@@ -1,9 +1,10 @@
 import React from "react";
+import "./SearchBar.css";
 
 const SearchBar = (props) => {
 
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form className="search-bar" onSubmit={props.handleSubmit}>
             <label>Filter: 
                 <select name="filter" onChange={props.handleChange}>
                     <option value="all">All</option>

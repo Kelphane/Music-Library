@@ -1,0 +1,19 @@
+.search-bar{
+    text-align: center;
+    width: 60%;
+}
+
+.search-bar label{
+    font-size: 25px;
+    margin-right: 1%;
+    height: 90%;
+}
+
+.search-bar select{
+    height: 90%;
+}
+
+.search-bar input{
+    height: 90%;
+}
+

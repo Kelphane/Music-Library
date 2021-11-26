@@ -52,7 +52,7 @@ class App extends Component{
                     return true;
                 }else if(results.genre === this.state.searchFor){
                     return true;
-                }else if(results.reaseDate === this.state.searchFor){
+                }else if(results.releaseDate === this.state.searchFor){
                     return true;
                 }
             });

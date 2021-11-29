@@ -24,6 +24,20 @@
     background-color: black;
 }
 
+.table thead button{
+    text-align: center;
+    background: no-repeat url("../../photos/SortArrows.png");
+    border: 2px solid black;
+    margin-left: 5px;
+    height: 25px;
+    width: 25px;
+    
+}
+
+.table thead button:hover{
+    border: 2px solid red;
+}
+
 .table tbody tr:nth-of-type(2n){
     background-color: lightgray;
 }

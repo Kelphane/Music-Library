@@ -10,6 +10,7 @@ class App extends Component{
             filter: "all",
             searchFor: "",
             initialSearch: false,
+            ascending: false,
             searchResults: [],
             searchSaved: []
         };
@@ -78,7 +79,11 @@ class App extends Component{
 
         for(let i = 0; i < searchCopy.length; i++){
             for(let j = 0; j < searchCopy.length; j++){
-                if(j !== i && searchCopy[i][event.target.name] < searchCopy[j][event.target.name]){
+                if(j !== i && this.state.ascending === false && searchCopy[i][event.target.name] < searchCopy[j][event.target.name]){
+                    savedIndex = searchCopy[i];
+                    searchCopy[i] = searchCopy[j];
+                    searchCopy[j] = savedIndex;
+                }else if(j !== i && this.state.ascending === true && searchCopy[i][event.target.name] > searchCopy[j][event.target.name]){
                     savedIndex = searchCopy[i];
                     searchCopy[i] = searchCopy[j];
                     searchCopy[j] = savedIndex;
@@ -86,7 +91,7 @@ class App extends Component{
             }
         }
 
-        this.setState({searchResults: searchCopy});
+        this.setState({searchResults: searchCopy, ascending: !this.state.ascending});
     }
 
     render(){

@@ -5,6 +5,7 @@ import SearchBar from "../SearchBar/SearchBar";
 const NavBar = (props) => {
     return(
         <nav className="nav-bar">
+            <h1>Music Library</h1>
             <SearchBar 
                 handleChange={props.handleChange}
                 handleSubmit={props.handleSubmit}

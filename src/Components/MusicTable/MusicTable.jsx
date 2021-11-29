@@ -31,11 +31,26 @@ const MusicTable = (props) => {
                 <table>
                     <thead>
                         <tr>
-                            <td>Title</td>
-                            <td>Album</td>
-                            <td>Artist</td>
-                            <td>Genre</td>
-                            <td>Released Date</td>
+                            <td>
+                                Title
+                                <button name="title" onClick={props.handleSort} />
+                            </td>
+                            <td>
+                                Album
+                                <button name="album" onClick={props.handleSort} />
+                            </td>
+                            <td>
+                                Artist
+                                <button name="artist" onClick={props.handleSort} />
+                            </td>
+                            <td>
+                                Genre
+                                <button name="genre" onClick={props.handleSort} />
+                            </td>
+                            <td>
+                                Released Date
+                                <button name="releaseDate" onClick={props.handleSort} />
+                            </td>
                         </tr>
                     </thead>
     

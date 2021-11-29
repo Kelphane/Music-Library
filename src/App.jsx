@@ -55,6 +55,8 @@ class App extends Component{
                     return true;
                 }else if(results.releaseDate === this.state.searchFor){
                     return true;
+                }else{
+                    return false;
                 }
             });
         }else{
@@ -68,6 +70,23 @@ class App extends Component{
         }
 
         this.setState({searchResults: modifiedSearch, initialSearch: true});
+    }
+
+    handleSort = (event) => {
+        let searchCopy = this.state.searchResults;
+        let savedIndex = {};
+
+        for(let i = 0; i < searchCopy.length; i++){
+            for(let j = 0; j < searchCopy.length; j++){
+                if(j !== i && searchCopy[i][event.target.name] < searchCopy[j][event.target.name]){
+                    savedIndex = searchCopy[i];
+                    searchCopy[i] = searchCopy[j];
+                    searchCopy[j] = savedIndex;
+                }
+            }
+        }
+
+        this.setState({searchResults: searchCopy});
     }
 
     render(){

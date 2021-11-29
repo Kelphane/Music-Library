@@ -77,7 +77,11 @@ class App extends Component{
                     handleChange={this.handleChange}
                     handleSubmit={this.handleSubmit}
                 />
-                <MusicTable searchResults={this.state.searchResults} initialSearch={this.state.initialSearch}/>
+                <MusicTable 
+                    searchResults={this.state.searchResults} 
+                    initialSearch={this.state.initialSearch}
+                    handleSort={this.handleSort}
+                />
             </div>
         );
     }

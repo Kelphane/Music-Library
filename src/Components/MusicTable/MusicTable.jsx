@@ -1,15 +1,26 @@
 import React from "react";
 import "./MusicTable.css";
-import image from "../../photos/no_results_pic.png";
+import noResults from "../../photos/no_results_pic.png";
+import beginSearch from "../../photos/Magnifying_Glass.jpg";
 
 const MusicTable = (props) => {
     
-    if(props.searchResults.length === 0){
+    if(props.initialSearch === false){
+        return(
+            <div className="placeholder">
+                <h3>Begin Your Search!</h3>
+                <img 
+                    src={beginSearch}
+                    alt="Begin Your Search!" 
+                />
+            </div>
+        );
+    }else if(props.searchResults.length === 0){
         return(
             <div className="placeholder">
                 <h3>No Results Found!</h3>
                 <img 
-                    src={image}
+                    src={noResults}
                     alt="No Results Found!" 
                 />
             </div>

@@ -9,6 +9,7 @@ class App extends Component{
         this.state = {
             filter: "all",
             searchFor: "",
+            initialSearch: false,
             searchResults: [],
             searchSaved: []
         };
@@ -66,7 +67,7 @@ class App extends Component{
             });
         }
 
-        this.setState({searchResults: modifiedSearch});
+        this.setState({searchResults: modifiedSearch, initialSearch: true});
     }
 
     render(){
@@ -76,7 +77,7 @@ class App extends Component{
                     handleChange={this.handleChange}
                     handleSubmit={this.handleSubmit}
                 />
-                <MusicTable searchResults={this.state.searchResults}/>
+                <MusicTable searchResults={this.state.searchResults} initialSearch={this.state.initialSearch}/>
             </div>
         );
     }

@@ -17,3 +17,7 @@
     margin: 0;
     margin-left: 4%;
 }
+
+.nav-bar button {
+    font-size: 19px;
+}

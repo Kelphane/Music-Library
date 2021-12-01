@@ -10,6 +10,7 @@ const NavBar = (props) => {
                 handleChange={props.handleChange}
                 handleSubmit={props.handleSubmit}
             />
+            <button onClick={props.toggleAddSong}>Toggle Song Form</button>
         </nav>
     );
 }

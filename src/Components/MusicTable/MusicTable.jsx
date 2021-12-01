@@ -2,10 +2,21 @@ import React from "react";
 import "./MusicTable.css";
 import noResults from "../../photos/no_results_pic.png";
 import beginSearch from "../../photos/Magnifying_Glass.jpg";
+import CreateSong from "../CreateSong/CreateSong";
 
 const MusicTable = (props) => {
     
-    if(props.initialSearch === false){
+    //Conditional Renderer
+    if(props.addSong === true){
+        return(
+            <div>
+                <CreateSong 
+                    handleChange={props.handleChange}
+                    handleNewSong={props.handleNewSong}
+                />
+            </div>
+        );
+    }else if(props.initialSearch === false){
         return(
             <div className="placeholder">
                 <h3>Begin Your Search!</h3>

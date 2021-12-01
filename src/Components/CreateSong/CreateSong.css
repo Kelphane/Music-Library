@@ -1,0 +1,30 @@
+.song-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60vw;
+    margin-left: 20vw;
+    margin-right: 20vw;
+    border: 2px solid black;
+}
+
+.song-form h1 {
+    font-size: 40px;
+    border-bottom: 2px solid black;
+}
+
+.form-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    width: 65%;
+    font-size: 25px;
+}
+
+.song-form button{
+    font-size: 25px;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}

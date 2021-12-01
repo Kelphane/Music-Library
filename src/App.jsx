@@ -12,7 +12,13 @@ class App extends Component{
             initialSearch: false,
             ascending: false,
             searchResults: [],
-            searchSaved: []
+            searchSaved: [],
+            addSong: false,
+            title: "",
+            album: "",
+            artist: "",
+            genre: "",
+            releaseDate: ""
         };
     }
 
@@ -23,7 +29,7 @@ class App extends Component{
     //GETs a Music List from API:
     async fetchMusic(){
         try{
-            let searchQuery = await Axios.get('http://www.devcodecampmusiclibrary.com/api/music');
+            let searchQuery = await Axios.get('http://localhost:3002/api/songs');
             let dataList = searchQuery.data;
             this.setState({
                 searchSaved: dataList
@@ -33,11 +39,12 @@ class App extends Component{
         }
     }
     
+    //Listens for User's Input.
     handleChange = (event) => {
         this.setState({[event.target.name]: event.target.value});
     }
 
-    //Filters the Saved Search by User's Criteria:
+    //Searches the List with the User's Filter
     handleSubmit = (event) => {
         event.preventDefault();
         let modifiedSearch = [];
@@ -70,9 +77,13 @@ class App extends Component{
             });
         }
 
-        this.setState({searchResults: modifiedSearch, initialSearch: true});
+        this.setState({
+            searchResults: modifiedSearch, 
+            initialSearch: true
+        });
     }
 
+    //Rearranges the list to be (Ascending or Descending) Alphabetical or Numerical.
     handleSort = (event) => {
         let searchCopy = this.state.searchResults;
         let savedIndex = {};
@@ -94,17 +105,48 @@ class App extends Component{
         this.setState({searchResults: searchCopy, ascending: !this.state.ascending});
     }
 
+    //Toggle State Value addSong.
+    toggleAddSong = () => {
+        this.setState({addSong: !this.state.addSong});
+    }
+
+    //Submit New Song.
+    handleNewSong = (event) =>{
+        event.preventDefault();
+        
+        try {
+            console.log("Submit Success!");
+            Axios.post('http://localhost:3002/api/songs', 
+                {
+                    title: this.state.title,
+                    album: this.state.album,
+                    artist: this.state.artist,
+                    genre: this.state.genre,
+                    releaseDate: this.state.releaseDate
+                }
+            );
+            this.fetchMusic();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     render(){
+        console.log(this.state);
         return (
             <div>
                 <NavBar 
                     handleChange={this.handleChange}
                     handleSubmit={this.handleSubmit}
+                    toggleAddSong={this.toggleAddSong}
                 />
                 <MusicTable 
                     searchResults={this.state.searchResults} 
                     initialSearch={this.state.initialSearch}
                     handleSort={this.handleSort}
+                    addSong={this.state.addSong}
+                    handleChange={this.handleChange}
+                    handleNewSong={this.handleNewSong}
                 />
             </div>
         );

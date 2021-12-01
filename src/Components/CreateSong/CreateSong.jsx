@@ -36,7 +36,7 @@ const CreateSong = (props) => {
                 <input type="text" name="releaseDate" id="releaseDate" onChange={props.handleChange} required/> 
             </div>
             
-            <button type="Submit">Sumbit</button>
+            <button type="Submit">Submit</button>
         </form>
     );
 }

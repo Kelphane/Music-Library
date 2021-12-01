@@ -116,7 +116,7 @@ class App extends Component{
         
         try {
             console.log("Submit Success!");
-            let newList = Axios.post('http://localhost:3002/api/songs', 
+            Axios.post('http://localhost:3002/api/songs', 
                 {
                     title: this.state.title,
                     album: this.state.album,
@@ -125,9 +125,6 @@ class App extends Component{
                     releaseDate: this.state.releaseDate
                 }
             );
-            this.setState({
-                searchSaved: newList
-            });
         } catch (error) {
             console.log(error);
         }

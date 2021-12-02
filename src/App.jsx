@@ -38,7 +38,7 @@ class App extends Component{
             console.log(error);
         }
     }
-    
+
     //Listens for User's Input.
     handleChange = (event) => {
         this.setState({[event.target.name]: event.target.value});
@@ -138,7 +138,6 @@ class App extends Component{
     }
 
     render(){
-        console.log(this.state);
         return (
             <div>
                 <NavBar 

@@ -13,7 +13,7 @@ class App extends Component{
             ascending: false,
             searchResults: [],
             searchSaved: [],
-            addSong: false,
+            toggleForm: false,
             title: "",
             album: "",
             artist: "",
@@ -48,20 +48,21 @@ class App extends Component{
     handleSubmit = (event) => {
         event.preventDefault();
         let modifiedSearch = [];
+        let criteria = this.state.searchFor;
         
-        if(this.state.filter === "all" && this.state.searchFor === ""){
+        if(this.state.filter === "all" && criteria === ""){
             modifiedSearch = this.state.searchSaved;
         }else if(this.state.filter === "all" && this.state.searchFor !== ""){
-            modifiedSearch = this.state.searchSaved.filter(results => {
-                if(results.title === this.state.searchFor){
+            modifiedSearch = this.state.searchSaved.filter(function(results){
+                if(results.title.indexOf(criteria) !== -1){
                     return true;
-                }else if(results.album === this.state.searchFor){
+                }else if(results.album.indexOf(criteria) !== -1){
                     return true;
-                }else if(results.artist === this.state.searchFor){
+                }else if(results.artist.indexOf(criteria) !== -1){
                     return true;
-                }else if(results.genre === this.state.searchFor){
+                }else if(results.genre.indexOf(criteria) !== -1){
                     return true;
-                }else if(results.releaseDate === this.state.searchFor){
+                }else if(results.releaseDate.indexOf(criteria) !== -1){
                     return true;
                 }else{
                     return false;
@@ -79,7 +80,8 @@ class App extends Component{
 
         this.setState({
             searchResults: modifiedSearch, 
-            initialSearch: true
+            initialSearch: true,
+            toggleForm: false
         });
     }
 
@@ -105,9 +107,9 @@ class App extends Component{
         this.setState({searchResults: searchCopy, ascending: !this.state.ascending});
     }
 
-    //Toggle State Value addSong.
+    //Toggle State Value toggleForm.
     toggleAddSong = () => {
-        this.setState({addSong: !this.state.addSong});
+        this.setState({toggleForm: !this.state.toggleForm});
     }
 
     //Submit New Song.
@@ -115,7 +117,6 @@ class App extends Component{
         event.preventDefault();
         
         try {
-            console.log("Submit Success!");
             Axios.post('http://localhost:3002/api/songs', 
                 {
                     title: this.state.title,
@@ -125,9 +126,15 @@ class App extends Component{
                     releaseDate: this.state.releaseDate
                 }
             );
+            alert("Song Submitted!");
+            this.setState({
+                toggleForm: false,
+                initialSearch: false
+            });
         } catch (error) {
             console.log(error);
         }
+        this.fetchMusic();
     }
 
     render(){
@@ -143,7 +150,7 @@ class App extends Component{
                     searchResults={this.state.searchResults} 
                     initialSearch={this.state.initialSearch}
                     handleSort={this.handleSort}
-                    addSong={this.state.addSong}
+                    toggleForm={this.state.toggleForm}
                     handleChange={this.handleChange}
                     handleNewSong={this.handleNewSong}
                 />

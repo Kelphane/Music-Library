@@ -7,7 +7,7 @@ import CreateSong from "../CreateSong/CreateSong";
 const MusicTable = (props) => {
     
     //Conditional Renderer
-    if(props.addSong === true){
+    if(props.toggleForm === true){
         return(
             <div>
                 <CreateSong 
